@@ -15,6 +15,7 @@ namespace bigschooll.Controllers
         {
             bigschoolContext context = new bigschoolContext();
             var upcommingCouser = context.Cousers.Where(p => p.DateTime > DateTime.Now).OrderBy(p => p.DateTime).ToList();
+            // lỗi
             foreach (Couser i in upcommingCouser)
             {
                 ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(i.LectuserId);
