@@ -21,8 +21,16 @@ namespace bigschooll.Controllers
         }
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Couser objCourse)
         {
+            ModelState.Remove("LectuserId");
+            if (!ModelState.IsValid)
+            {
+                objCourse.ListCategory = context.Categories.ToList();
+                return View("Create", objCourse);
+            }
+
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().
                 GetUserManager<ApplicationUserManager>().
                 FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());

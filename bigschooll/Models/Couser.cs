@@ -24,6 +24,7 @@ namespace bigschooll.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+        public string Name { get; internal set; }
 
         public List<Category> ListCategory = new List<Category>();
     }
